@@ -82,7 +82,7 @@ def config_mlflow():
                               log_input_examples=True,
                               log_model_signatures=True)
 
-def train_model(model):
+def train_model(model, X_train, y_train):
     with mlflow.start_run(run_name='experiment_mlops_ead') as run:
       model.fit(X_train,
                 y_train,
@@ -95,4 +95,4 @@ if __name__ == "__main__":
     X, y = read_data()
     X_train, X_test, y_train, y_test = process_data(X, y)
     model = create_model(X_train)
-    train_model(model)
+    train_model(model, X, y)
